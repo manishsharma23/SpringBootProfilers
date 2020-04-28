@@ -3,6 +3,7 @@ package com.example.profilers;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.profile.bean.datasources.AppDataSourcesConfig;
 import com.profile.component.Animal;
 import com.profile.configuration.User;
 import com.profile.morethan2.otherfeatures.Work;
@@ -19,7 +20,8 @@ public class SpringBoot2ProfilersApplication {
 		ctx.refresh();
 		User user = ctx.getBean(User.class);
 		System.out.println("id:" + user.id + ", Name:" + user.name);
-*/
+		*/
+
 		/*AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 	    ctx.getEnvironment().setActiveProfiles("goat");
 	    ctx.scan("com.profile.component");
@@ -36,7 +38,7 @@ public class SpringBoot2ProfilersApplication {
 		System.out.println("============="+animal.getMessage());
 	  */
 		
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+		/*AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 	    //ctx.getEnvironment().setActiveProfiles("eligible", "busy");
 						//or
 		ctx.getEnvironment().setActiveProfiles("eligible", "free");
@@ -47,6 +49,14 @@ public class SpringBoot2ProfilersApplication {
 	    ctx.refresh();
 	    com.profile.morethan2.otherfeatures.Work ob = ctx.getBean(com.profile.morethan2.otherfeatures.Work.class);
 	    System.out.println("------>>>"+ob.desc);
+	    */
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+		ctx.getEnvironment().setActiveProfiles("mysql");
+		ctx.scan("com.profile.bean.datasources");
+		ctx.refresh();
+		AppDataSourcesConfig appDSC = ctx.getBean(AppDataSourcesConfig.class);
+		System.out.println("============="+appDSC.getClass());
 	}
 
 }
