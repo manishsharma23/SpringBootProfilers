@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.profile.component.Animal;
 import com.profile.configuration.User;
+import com.profile.morethan2.otherfeatures.Work;
 
 @SpringBootApplication
 public class SpringBoot2ProfilersApplication {
@@ -26,14 +27,26 @@ public class SpringBoot2ProfilersApplication {
 	    Animal animal = ctx.getBean(Animal.class);
 	    System.out.println(animal.getMessage()); */
 		
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+	/*	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.getEnvironment().setActiveProfiles("buffalo");
 		ctx.scan("com.profile.bean");
 		ctx.refresh();
 		com.profile.bean.Animal animal = ctx.getBean(com.profile.bean.Animal.class);
 //		Animal animal = ctx.getBean(Animal.class);
 		System.out.println("============="+animal.getMessage());
-	  
+	  */
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+	    //ctx.getEnvironment().setActiveProfiles("eligible", "busy");
+						//or
+		ctx.getEnvironment().setActiveProfiles("eligible", "free");
+		      //  or
+		//ctx.getEnvironment().setActiveProfiles("busy");
+		
+	    ctx.scan("com.profile.morethan2.otherfeatures");		
+	    ctx.refresh();
+	    com.profile.morethan2.otherfeatures.Work ob = ctx.getBean(com.profile.morethan2.otherfeatures.Work.class);
+	    System.out.println("------>>>"+ob.desc);
 	}
 
 }
