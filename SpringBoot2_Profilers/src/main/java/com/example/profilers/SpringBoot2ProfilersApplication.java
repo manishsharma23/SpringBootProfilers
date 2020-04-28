@@ -42,7 +42,7 @@ public class SpringBoot2ProfilersApplication {
 		ctx.getEnvironment().setActiveProfiles("eligible", "free");
 		      //  or
 		//ctx.getEnvironment().setActiveProfiles("busy");
-		
+		 
 	    ctx.scan("com.profile.morethan2.otherfeatures");		
 	    ctx.refresh();
 	    com.profile.morethan2.otherfeatures.Work ob = ctx.getBean(com.profile.morethan2.otherfeatures.Work.class);
